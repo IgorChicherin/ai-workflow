@@ -1,0 +1,40 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "Manager",
+  "lsp": true,
+  "plugin": [
+    [
+      "github:beremaran/opencode-agent-tree",
+      {
+        "subagentModel": "anthropic/claude-sonnet-4-6",
+        "orchestratorAgent": "Manager",
+        "orchestratorModel": "anthropic/claude-sonnet-4-6",
+        "orchestratorDepth": 1,
+        "agents": [
+          "SimpleWorker",
+          "MediumWorker",
+          "ComplexWorker",
+          "Reviewer",
+          "Architect"
+        ],
+        "agentModels": {
+          "SimpleWorker": "opencode/nemotron-3-ultra-free",
+          "MediumWorker": "opencode/big-pickle",
+          "ComplexWorker": "anthropic/claude-sonnet-4-6",
+          "Reviewer": "anthropic/claude-sonnet-4-6",
+          "Architect": "anthropic/claude-opus-4-8"
+        },
+        "blockedTools": [
+          "edit",
+          "bash"
+        ],
+        "restrictTask": true
+      }
+    ]
+  ],
+  "provider": {
+    "claude-code": {
+      "name": "Claude Code"
+    },
+  }
+}
